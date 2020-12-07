@@ -15,10 +15,9 @@ namespace particles
         Emitter emitter; //эммитер без явного создания
         public static Random rand = new Random();
         List<Emitter> emitters = new List<Emitter>();
-        List<Particle> particles = new List<Particle>();
 
-        GravityPoint point1; // добавил поле под первую точку
-        GravityPoint point2; // добавил поле под вторую точку
+        GravityPoint point1;
+        GravityPoint point2; 
         GravityPoint point3;
         GravityPoint point4;
         GravityPoint point5;
@@ -38,7 +37,6 @@ namespace particles
                 SpeedMin = 10,
                 SpeedMax = 10,
                 ColorFrom = Color.White,
-                ColorTo = Color.FromArgb(0, Color.White),
                 ParticlesPerTick = 20,
                 X = picDisplay.Width / 2,
                 Width = picDisplay.Width,
@@ -72,15 +70,12 @@ namespace particles
                 X = picDisplay.Width / 2 + 500,
                 Y = picDisplay.Height / 2,
             };
-
-            // привязываем поля к эмиттеру
             emitter.impactPoints.Add(point1);
             emitter.impactPoints.Add(point2);
             emitter.impactPoints.Add(point3);
             emitter.impactPoints.Add(point4);
             emitter.impactPoints.Add(point5);
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             emitter.UpdateState(); // обновляем систему каждый тик 
@@ -93,17 +88,7 @@ namespace particles
 
             picDisplay.Invalidate(); //очень важный момент - обновляем picDisplay
         }
-
-
-        // направление струи
-        private void tbDirection_Scroll(object sender, EventArgs e)
-        {
-            emitter.Direction = tbDirection.Value;
-            lblDirection.Text = $"{tbDirection.Value}°"; // вывод значения
-        }
-
-
-
+       // направление струи
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton2.Checked)
@@ -116,12 +101,6 @@ namespace particles
                 emitter.GravitationY = 1;
             }
         }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void tbEllipse_Scroll(object sender, EventArgs e)
         {
             foreach (var p in emitter.impactPoints)
@@ -133,7 +112,6 @@ namespace particles
                 }
             }
         }
-
         private void lbY_Scroll(object sender, EventArgs e)
         {
             foreach (var p in emitter.impactPoints)
@@ -144,43 +122,29 @@ namespace particles
                 }
             }
         }
-
         private void CngColor_Click(object sender, EventArgs e)
         {
-            emitter.impactPoints.Remove(point1);
-            emitter.impactPoints.Remove(point2);
-            emitter.impactPoints.Remove(point3);
-            emitter.impactPoints.Remove(point4);
-            emitter.impactPoints.Remove(point5);
-            point1 = new GravityPoint(Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255)))
-            {
-                X = picDisplay.Width / 2,k
-            };
-            point2 = new GravityPoint(Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255)))
-            {
-                X = picDisplay.Width / 2 - 250,
-                Y = picDisplay.Height / 2,
-            };
-            point3 = new GravityPoint(Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255)))
-            {
-                X = picDisplay.Width / 2 + 250,
-                Y = picDisplay.Height / 2,
-            };
-            point4 = new GravityPoint(Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255)))
-            {
-                X = picDisplay.Width / 2 - 500,
-                Y = picDisplay.Height / 2,
-            };
-            point5 = new GravityPoint(Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255)))
-            {
-                X = picDisplay.Width / 2 + 500,
-                Y = picDisplay.Height / 2,
-            };
-            emitter.impactPoints.Add(point1);
-            emitter.impactPoints.Add(point2);
-            emitter.impactPoints.Add(point3);
-            emitter.impactPoints.Add(point4);
-            emitter.impactPoints.Add(point5);
+            point1.rasengan = Color.FromArgb( rand.Next(255), rand.Next(255), rand.Next(255));
+            point2.rasengan = Color.FromArgb( rand.Next(255), rand.Next(255), rand.Next(255));
+            point3.rasengan = Color.FromArgb( rand.Next(255), rand.Next(255), rand.Next(255));
+            point4.rasengan = Color.FromArgb( rand.Next(255), rand.Next(255), rand.Next(255));
+            point5.rasengan = Color.FromArgb( rand.Next(255), rand.Next(255), rand.Next(255));
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbCount_Scroll(object sender, EventArgs e)
+        {
+            emitter.ParticlesPerTick = lbCount.Value;
+            label5.Text = Convert.ToString(lbCount.Value);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
     }   

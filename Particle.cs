@@ -20,7 +20,6 @@ namespace particles
 
         public static Random rand = new Random();
 
-        // конструктор по умолчанию
         public Particle()
         {
             var direction = (double)rand.Next(360);
@@ -56,7 +55,6 @@ namespace particles
         public static Color MixColor(Color color1, Color color2, float k)
         {
             return Color.FromArgb(
-                (int)(color2.A * k + color1.A * (1 - k)),
                 (int)(color2.R * k + color1.R * (1 - k)),
                 (int)(color2.G * k + color1.G * (1 - k)),
                 (int)(color2.B * k + color1.B * (1 - k))

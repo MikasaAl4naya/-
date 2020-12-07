@@ -11,6 +11,7 @@ namespace particles
     {
         public float X; // ну точка же, вот и две координаты
         public float Y;
+        
 
         // абстрактный метод с помощью которого будем изменять состояние частиц
         // например притягивать
@@ -31,7 +32,8 @@ namespace particles
 
     public class GravityPoint : IImpactPoint
     {
-        public int Power = 100; // сила притяжения
+        int count = 0;
+        public int Power = 200; // сила притяжения
         public Color rasengan = Color.Red;
         public GravityPoint(Color rasengan)
         {
@@ -46,7 +48,7 @@ namespace particles
             double r = Math.Sqrt(gX * gX + gY * gY); // считаем расстояние от центра точки до центра частицы
             if (r + particle.Radius < Power / 2) // если частица оказалось внутри окружности
             {
-                // то притягиваем ее
+                count++;
                 var color = particle as ParticleColorful;
                 color.FromColor = rasengan;
                 color.ToColor = rasengan;
@@ -63,6 +65,13 @@ namespace particles
                    Power,
                    Power
                );
+            g.DrawString(
+           $"Количество: {count}", // надпись, можно перенос строки вставлять (если вы Катя, то может не работать и надо использовать \r\n)
+           new Font("Verdana", 10), // шрифт и его размер
+           new SolidBrush(Color.White), // цвет шрифта
+           X-20, // расположение в пространстве
+           Y
+       );
         }
     }
 }
