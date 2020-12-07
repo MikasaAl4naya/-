@@ -154,8 +154,7 @@ namespace particles
             emitter.impactPoints.Remove(point5);
             point1 = new GravityPoint(Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255)))
             {
-                X = picDisplay.Width / 2,
-                Y = picDisplay.Height / 2,
+                X = picDisplay.Width / 2,k
             };
             point2 = new GravityPoint(Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255)))
             {
