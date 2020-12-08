@@ -24,7 +24,7 @@ namespace particles
         public Form1()
         {
             InitializeComponent();
-
+            picDisplay.MouseWheel += new MouseEventHandler(picDisplay_MouseWheel);
             // привязали к пикчбоку изображения, чтоб можно было рисовать
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
@@ -101,17 +101,6 @@ namespace particles
                 emitter.GravitationY = 1;
             }
         }
-        private void tbEllipse_Scroll(object sender, EventArgs e)
-        {
-            foreach (var p in emitter.impactPoints)
-            {
-                if (p is GravityPoint) // так как impactPoints не обязательно содержит поле Power, надо проверить на тип 
-                {
-                    // если гравитон то меняем силу
-                    (p as GravityPoint).Power = tbEllipse.Value;
-                }
-            }
-        }
         private void lbY_Scroll(object sender, EventArgs e)
         {
             foreach (var p in emitter.impactPoints)
@@ -129,9 +118,27 @@ namespace particles
             point3.rasengan = Color.FromArgb( rand.Next(255), rand.Next(255), rand.Next(255));
             point4.rasengan = Color.FromArgb( rand.Next(255), rand.Next(255), rand.Next(255));
             point5.rasengan = Color.FromArgb( rand.Next(255), rand.Next(255), rand.Next(255));
-
         }
-
+        private void picDisplay_MouseWheel(object sender, MouseEventArgs e)
+        {
+            foreach (var p in emitter.impactPoints)
+            {
+               if(e.Delta>0)
+                {
+                    if((p as GravityPoint).Power<359)
+                    {
+                        (p as GravityPoint).Power += 10;
+                    }
+                }
+               else if (e.Delta<0)
+                {
+                    if ((p as GravityPoint).Power > 10)
+                    {
+                        (p as GravityPoint).Power -= 10;
+                    }
+                }
+            }
+        }
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -145,7 +152,7 @@ namespace particles
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            label5.Text = Convert.ToString(lbCount.Value);
         }
     }   
 }

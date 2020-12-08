@@ -43,6 +43,7 @@ namespace particles
 
         public virtual void ResetParticle(Particle particle)
         {
+
             particle.Life = Particle.rand.Next(LifeMin, LifeMax);
             particle.X = X;
             particle.Y = Y;
@@ -62,7 +63,6 @@ namespace particles
             var particle = new ParticleColorful();
             particle.FromColor = ColorFrom;
             particle.ToColor = ColorTo;
-
             return particle;
         }
 

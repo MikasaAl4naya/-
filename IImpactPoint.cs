@@ -33,6 +33,7 @@ namespace particles
     public class GravityPoint : IImpactPoint
     {
         int count = 0;
+        public HashSet<Particle> numberOfParticles = new HashSet<Particle>(); 
         public int Power = 200; // сила притяжения
         public Color rasengan = Color.Red;
         public GravityPoint(Color rasengan)
@@ -48,10 +49,10 @@ namespace particles
             double r = Math.Sqrt(gX * gX + gY * gY); // считаем расстояние от центра точки до центра частицы
             if (r + particle.Radius < Power / 2) // если частица оказалось внутри окружности
             {
-                count++;
                 var color = particle as ParticleColorful;
                 color.FromColor = rasengan;
                 color.ToColor = rasengan;
+                numberOfParticles.Add(particle);
             }
         }
 
@@ -66,7 +67,7 @@ namespace particles
                    Power
                );
             g.DrawString(
-           $"Количество: {count}", // надпись, можно перенос строки вставлять (если вы Катя, то может не работать и надо использовать \r\n)
+           $"Количество: { numberOfParticles.Count}", // надпись, можно перенос строки вставлять (если вы Катя, то может не работать и надо использовать \r\n)
            new Font("Verdana", 10), // шрифт и его размер
            new SolidBrush(Color.White), // цвет шрифта
            X-20, // расположение в пространстве

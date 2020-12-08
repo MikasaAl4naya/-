@@ -33,9 +33,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblDirection = new System.Windows.Forms.Label();
             this.lblSpreading = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.lblGraviton2 = new System.Windows.Forms.Label();
-            this.tbEllipse = new System.Windows.Forms.TrackBar();
             this.label4 = new System.Windows.Forms.Label();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -46,7 +44,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbEllipse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbCount)).BeginInit();
             this.SuspendLayout();
@@ -81,15 +78,6 @@
             this.lblSpreading.Size = new System.Drawing.Size(0, 13);
             this.lblSpreading.TabIndex = 5;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 541);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Размер всех точек";
-            // 
             // lblGraviton2
             // 
             this.lblGraviton2.AutoSize = true;
@@ -98,50 +86,41 @@
             this.lblGraviton2.Size = new System.Drawing.Size(0, 13);
             this.lblGraviton2.TabIndex = 8;
             // 
-            // tbEllipse
-            // 
-            this.tbEllipse.Location = new System.Drawing.Point(7, 559);
-            this.tbEllipse.Maximum = 359;
-            this.tbEllipse.Name = "tbEllipse";
-            this.tbEllipse.Size = new System.Drawing.Size(142, 45);
-            this.tbEllipse.TabIndex = 10;
-            this.tbEllipse.Scroll += new System.EventHandler(this.tbEllipse_Scroll);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(681, 564);
+            this.label4.Location = new System.Drawing.Point(420, 543);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(121, 13);
+            this.label4.Size = new System.Drawing.Size(66, 13);
             this.label4.TabIndex = 13;
-            this.label4.Text = "Вкл\\Выкл гравитацию";
+            this.label4.Text = "Гравитация";
             // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(684, 580);
+            this.radioButton1.Location = new System.Drawing.Point(423, 559);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(105, 17);
+            this.radioButton1.Size = new System.Drawing.Size(74, 17);
             this.radioButton1.TabIndex = 14;
             this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Гравитация вкл";
+            this.radioButton1.Text = "Включить";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(684, 603);
+            this.radioButton2.Location = new System.Drawing.Point(423, 582);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(113, 17);
+            this.radioButton2.Size = new System.Drawing.Size(82, 17);
             this.radioButton2.TabIndex = 15;
-            this.radioButton2.Text = "Гравитация выкл";
+            this.radioButton2.Text = "Выключить";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // lbY
             // 
-            this.lbY.Location = new System.Drawing.Point(155, 559);
+            this.lbY.Location = new System.Drawing.Point(12, 559);
             this.lbY.Maximum = 359;
             this.lbY.Name = "lbY";
             this.lbY.Size = new System.Drawing.Size(142, 45);
@@ -151,16 +130,16 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(149, 541);
+            this.label2.Location = new System.Drawing.Point(6, 541);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(193, 13);
+            this.label2.Size = new System.Drawing.Size(182, 13);
             this.label2.TabIndex = 17;
-            this.label2.Text = "Перемещение точек по горизонтали";
+            this.label2.Text = "Перемещение точек по вертикали";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // CngColor
             // 
-            this.CngColor.Location = new System.Drawing.Point(985, 574);
+            this.CngColor.Location = new System.Drawing.Point(646, 559);
             this.CngColor.Name = "CngColor";
             this.CngColor.Size = new System.Drawing.Size(133, 23);
             this.CngColor.TabIndex = 18;
@@ -170,7 +149,7 @@
             // 
             // lbCount
             // 
-            this.lbCount.Location = new System.Drawing.Point(353, 559);
+            this.lbCount.Location = new System.Drawing.Point(210, 559);
             this.lbCount.Maximum = 200;
             this.lbCount.Minimum = 10;
             this.lbCount.Name = "lbCount";
@@ -182,7 +161,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(366, 543);
+            this.label1.Location = new System.Drawing.Point(223, 543);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 13);
             this.label1.TabIndex = 20;
@@ -191,7 +170,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(501, 574);
+            this.label5.Location = new System.Drawing.Point(358, 569);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(0, 13);
             this.label5.TabIndex = 22;
@@ -210,8 +189,6 @@
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.tbEllipse);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.lblGraviton2);
             this.Controls.Add(this.lblSpreading);
             this.Controls.Add(this.lblDirection);
@@ -220,7 +197,6 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbEllipse)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbCount)).EndInit();
             this.ResumeLayout(false);
@@ -234,9 +210,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblDirection;
         private System.Windows.Forms.Label lblSpreading;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblGraviton2;
-        private System.Windows.Forms.TrackBar tbEllipse;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
