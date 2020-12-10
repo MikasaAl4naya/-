@@ -17,7 +17,7 @@ namespace particles
         List<Emitter> emitters = new List<Emitter>();
 
         GravityPoint point1;
-        GravityPoint point2; 
+        GravityPoint point2;
         GravityPoint point3;
         GravityPoint point4;
         GravityPoint point5;
@@ -25,12 +25,11 @@ namespace particles
         {
             InitializeComponent();
             picDisplay.MouseWheel += new MouseEventHandler(picDisplay_MouseWheel);
-            // привязали к пикчбоку изображения, чтоб можно было рисовать
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
 
-            this.emitter = new TopEmitter // создаю эмиттер и привязываю его к полю emitter
+            this.emitter = new TopEmitter
             {
                 Direction = 0,
                 Spreading = 10,
@@ -43,7 +42,7 @@ namespace particles
                 Y = picDisplay.Height / 2,
             };
 
-            emitters.Add(this.emitter); // все равно добавляю в список emitters, чтобы он рендерился и обновлялся
+            emitters.Add(this.emitter);
 
             point1 = new GravityPoint(Color.Red)
             {
@@ -88,7 +87,7 @@ namespace particles
 
             picDisplay.Invalidate(); //очень важный момент - обновляем picDisplay
         }
-       // направление струи
+        // направление струи
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton2.Checked)
@@ -103,9 +102,11 @@ namespace particles
         }
         private void lbY_Scroll(object sender, EventArgs e)
         {
+
+
             foreach (var p in emitter.impactPoints)
             {
-                if (p is GravityPoint) // так как impactPoints не обязательно содержит поле Power, надо проверить на тип 
+                if (p is GravityPoint)
                 {
                     (p as GravityPoint).Y = lbY.Value;
                 }
@@ -113,24 +114,24 @@ namespace particles
         }
         private void CngColor_Click(object sender, EventArgs e)
         {
-            point1.rasengan = Color.FromArgb( rand.Next(255), rand.Next(255), rand.Next(255));
-            point2.rasengan = Color.FromArgb( rand.Next(255), rand.Next(255), rand.Next(255));
-            point3.rasengan = Color.FromArgb( rand.Next(255), rand.Next(255), rand.Next(255));
-            point4.rasengan = Color.FromArgb( rand.Next(255), rand.Next(255), rand.Next(255));
-            point5.rasengan = Color.FromArgb( rand.Next(255), rand.Next(255), rand.Next(255));
+            point1.rasengan = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
+            point2.rasengan = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
+            point3.rasengan = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
+            point4.rasengan = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
+            point5.rasengan = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
         }
         private void picDisplay_MouseWheel(object sender, MouseEventArgs e)
         {
             foreach (var p in emitter.impactPoints)
             {
-               if(e.Delta>0)
+                if (e.Delta > 0)
                 {
-                    if((p as GravityPoint).Power<359)
+                    if ((p as GravityPoint).Power < 359)
                     {
                         (p as GravityPoint).Power += 10;
                     }
                 }
-               else if (e.Delta<0)
+                else if (e.Delta < 0)
                 {
                     if ((p as GravityPoint).Power > 10)
                     {
@@ -153,6 +154,40 @@ namespace particles
         private void Form1_Load(object sender, EventArgs e)
         {
             label5.Text = Convert.ToString(lbCount.Value);
+            foreach (var p in emitter.impactPoints)
+                lbY.Value = (int)(p as GravityPoint).Y;
         }
-    }   
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var dialog = new ColorDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                button1.BackColor = dialog.Color;
+            }
+
+        }
+
+        private void picDisplay_mouseClick(object sender, MouseEventArgs e)
+        {
+            foreach (var p in emitter.impactPoints)
+            {
+                if (Math.Sqrt(e.X + e.X + e.Y + e.Y) < (p as GravityPoint).Power / 2)
+                {
+                    (p as GravityPoint).rasengan = button1.BackColor;
+                }
+            }
+        }
+
+        private void picDisplay_MouseMove(object sender, MouseEventArgs e)
+        {
+            foreach (var p in emitter.impactPoints)
+            {
+                if (Math.Sqrt(e.X + e.X + e.Y + e.Y) < (p as GravityPoint).Power / 2)
+                {
+                    (p as GravityPoint).rasengan = button1.BackColor;
+                }
+            }
+        }
+    }
 }

@@ -9,15 +9,13 @@ namespace particles
 {
     public abstract class IImpactPoint
     {
-        public float X; // ну точка же, вот и две координаты
+        public float X;
         public float Y;
         
 
-        // абстрактный метод с помощью которого будем изменять состояние частиц
-        // например притягивать
+
         public abstract void ImpactParticle(Particle particle);
 
-        // базовый класс для отрисовки точечки
         public virtual void Render(Graphics g)
         {
             g.FillEllipse(
@@ -32,15 +30,14 @@ namespace particles
 
     public class GravityPoint : IImpactPoint
     {
-        int count = 0;
         public HashSet<Particle> numberOfParticles = new HashSet<Particle>(); 
-        public int Power = 200; // сила притяжения
+        public int Power = 200;
         public Color rasengan = Color.Red;
+
         public GravityPoint(Color rasengan)
         {
             this.rasengan = rasengan;
         }
-        // а сюда по сути скопировали с минимальными правками то что было в UpdateState
         public override void ImpactParticle(Particle particle)
         {
             float gX = X - particle.X;
@@ -58,7 +55,6 @@ namespace particles
 
         public override void Render(Graphics g)
         {
-            // буду рисовать окружность с диаметром равным Power
             g.DrawEllipse(
                    new Pen(rasengan),
                    X - Power / 2,
@@ -66,12 +62,16 @@ namespace particles
                    Power,
                    Power
                );
+            var stringFormat = new StringFormat(); // создаем экземпляр класса
+            stringFormat.Alignment = StringAlignment.Center; // выравнивание по горизонтали
+            stringFormat.LineAlignment = StringAlignment.Center; // выравнивание по вертикали
             g.DrawString(
-           $"Количество: { numberOfParticles.Count}", // надпись, можно перенос строки вставлять (если вы Катя, то может не работать и надо использовать \r\n)
-           new Font("Verdana", 10), // шрифт и его размер
-           new SolidBrush(Color.White), // цвет шрифта
-           X-20, // расположение в пространстве
-           Y
+           $"Количество: { numberOfParticles.Count}", 
+           new Font("Verdana", 10), 
+           new SolidBrush(Color.White), 
+           X-20, 
+           Y,
+           stringFormat
        );
         }
     }

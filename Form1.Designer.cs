@@ -43,6 +43,7 @@
             this.lbCount = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbCount)).BeginInit();
@@ -52,7 +53,7 @@
             // 
             this.picDisplay.Location = new System.Drawing.Point(9, 12);
             this.picDisplay.Name = "picDisplay";
-            this.picDisplay.Size = new System.Drawing.Size(1144, 526);
+            this.picDisplay.Size = new System.Drawing.Size(1221, 526);
             this.picDisplay.TabIndex = 0;
             this.picDisplay.TabStop = false;
             // 
@@ -175,11 +176,22 @@
             this.label5.Size = new System.Drawing.Size(0, 13);
             this.label5.TabIndex = 22;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(804, 559);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1165, 645);
+            this.ClientSize = new System.Drawing.Size(1276, 595);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbCount);
@@ -220,6 +232,7 @@
         private System.Windows.Forms.TrackBar lbCount;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button1;
     }
 }
 

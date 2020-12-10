@@ -9,10 +9,10 @@ namespace particles
 {
     public class Particle
     {
-        public float Life; // наша хпшка частицы
+        public float Life; 
 
-        public int Radius; // радиус ака размер нашей частицы
-        public float X; // X и Y положение частицы в пространстве 
+        public int Radius; // радиус частицы
+        public float X; //положение частицы в пространстве 
         public float Y;
 
         public float SpeedX; // скорость по оси X
@@ -61,7 +61,6 @@ namespace particles
             );
         }
 
-        // переопределение нашей отрисовки
         public override void Draw(Graphics g)
         {
             float k = Math.Min(1f, Life / 100);
