@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace particles
+namespace Курсачица
 {
     public class Particle
     {
@@ -36,7 +36,6 @@ namespace particles
         {
             float k = Math.Min(1f, Life / 100);
             int alpha = (int)(k * 255);
-
 
             var color = Color.FromArgb(alpha, Color.Black);
             var b = new SolidBrush(color);

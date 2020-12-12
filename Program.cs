@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace particles
+namespace Курсачица
 {
     static class Program
     {

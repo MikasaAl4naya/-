@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace particles
+namespace Курсачица
 {
     public class Emitter
     {
@@ -24,15 +24,11 @@ namespace particles
 
         public Color ColorFrom = Color.White; // начальный цвет
         public Color ColorTo = Color.FromArgb(0, Color.Black); // конечный цвет
-       
-
-        public int MousePositionX;
-        public int MousePositionY;
 
         public float GravitationX = 0;
         public float GravitationY = 1;
 
-        List<Particle> particles = new List<Particle>();
+        public List<Particle> particles = new List<Particle>();
 
 
 
@@ -73,7 +69,6 @@ namespace particles
             {
                 if (particle.Life < 0)
                 {
-
                     if (particlesToCreate > 0)
                     {
                         particlesToCreate -= 1;
@@ -89,7 +84,6 @@ namespace particles
                     {
                         point.ImpactParticle(particle);
                     }
-
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
                 }
@@ -104,8 +98,20 @@ namespace particles
                 particles.Add(particle);
             }
         }
+        public void Chidori()
+        {
 
-        public void Render(Graphics g)
+            foreach (var particle in particles)
+            {
+                foreach (var point in impactPoints)
+                {
+                    point.ImpactParticle(particle);
+                }
+            }
+        }
+    
+
+    public void Render(Graphics g)
         {
             foreach (var particle in particles)
             {

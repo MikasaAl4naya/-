@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace particles
+namespace Курсачица
 {
     public partial class Form1 : Form
     {
         Emitter emitter; //эммитер без явного создания
         public static Random rand = new Random();
         List<Emitter> emitters = new List<Emitter>();
+        bool work = true;
 
         GravityPoint point1;
         GravityPoint point2;
@@ -77,17 +78,26 @@ namespace particles
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
+            emitter.Chidori();
+            if (work == true)
             emitter.UpdateState(); // обновляем систему каждый тик 
 
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
-                g.Clear(Color.Black); // здесь задаем цвет фона
-                emitter.Render(g); // Рендерим нашу кучу частицы
+                g.Clear(Color.Black); 
+                emitter.Render(g);
             }
 
-            picDisplay.Invalidate(); //очень важный момент - обновляем picDisplay
+            foreach(var p in emitter.particles)
+            {
+                if (p.X > picDisplay.Width || p.Y > picDisplay.Height ||p.X<0 ||p.Y<0)
+                {
+                    p.Life = 0;
+                }
+            }
+
+            picDisplay.Invalidate();
         }
-        // направление струи
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton2.Checked)
@@ -100,10 +110,9 @@ namespace particles
                 emitter.GravitationY = 1;
             }
         }
+
         private void lbY_Scroll(object sender, EventArgs e)
         {
-
-
             foreach (var p in emitter.impactPoints)
             {
                 if (p is GravityPoint)
@@ -112,6 +121,7 @@ namespace particles
                 }
             }
         }
+
         private void CngColor_Click(object sender, EventArgs e)
         {
             point1.rasengan = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
@@ -120,6 +130,7 @@ namespace particles
             point4.rasengan = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
             point5.rasengan = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
         }
+
         private void picDisplay_MouseWheel(object sender, MouseEventArgs e)
         {
             foreach (var p in emitter.impactPoints)
@@ -140,10 +151,6 @@ namespace particles
                 }
             }
         }
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void lbCount_Scroll(object sender, EventArgs e)
         {
@@ -163,31 +170,39 @@ namespace particles
             var dialog = new ColorDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                button1.BackColor = dialog.Color;
-            }
-
-        }
-
-        private void picDisplay_mouseClick(object sender, MouseEventArgs e)
-        {
-            foreach (var p in emitter.impactPoints)
-            {
-                if (Math.Sqrt(e.X + e.X + e.Y + e.Y) < (p as GravityPoint).Power / 2)
-                {
-                    (p as GravityPoint).rasengan = button1.BackColor;
-                }
+                button1.BackColor  = dialog.Color;
             }
         }
 
-        private void picDisplay_MouseMove(object sender, MouseEventArgs e)
+        private void picDisplay_MouseClick(object sender, MouseEventArgs e)
         {
-            foreach (var p in emitter.impactPoints)
+            point1.rasengan = button1.BackColor;
+            var gX = point1.X - e.X;
+            var gY = point1.Y - e.Y;
+            double r = Math.Sqrt(gX * gX + gY * gY);
+            if (r < point1.Power / 2 )
             {
-                if (Math.Sqrt(e.X + e.X + e.Y + e.Y) < (p as GravityPoint).Power / 2)
-                {
-                    (p as GravityPoint).rasengan = button1.BackColor;
-                }
+                point1.rasengan = button1.BackColor;
             }
+            else
+            {
+                point1.rasengan = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            work = true;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            work = false;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            emitter.UpdateState();
         }
     }
 }

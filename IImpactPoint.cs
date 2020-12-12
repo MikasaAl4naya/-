@@ -5,15 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace particles
+namespace Курсачица
 {
     public abstract class IImpactPoint
     {
         public float X;
         public float Y;
-        
-
-
         public abstract void ImpactParticle(Particle particle);
 
         public virtual void Render(Graphics g)
@@ -62,9 +59,9 @@ namespace particles
                    Power,
                    Power
                );
-            var stringFormat = new StringFormat(); // создаем экземпляр класса
-            stringFormat.Alignment = StringAlignment.Center; // выравнивание по горизонтали
-            stringFormat.LineAlignment = StringAlignment.Center; // выравнивание по вертикали
+            var stringFormat = new StringFormat(); 
+            stringFormat.Alignment = StringAlignment.Center; 
+            stringFormat.LineAlignment = StringAlignment.Center;
             g.DrawString(
            $"Количество: { numberOfParticles.Count}", 
            new Font("Verdana", 10), 
