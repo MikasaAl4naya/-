@@ -27,9 +27,6 @@ namespace Курсачица
             InitializeComponent();
             picDisplay.MouseWheel += new MouseEventHandler(picDisplay_MouseWheel);
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
-            picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
-            picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
-
             this.emitter = new TopEmitter
             {
                 Direction = 0,
@@ -124,11 +121,11 @@ namespace Курсачица
 
         private void CngColor_Click(object sender, EventArgs e)
         {
-            point1.rasengan = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
-            point2.rasengan = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
-            point3.rasengan = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
-            point4.rasengan = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
-            point5.rasengan = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
+            point1.rasengan = Color.Red;
+            point2.rasengan = Color.LightBlue;
+            point3.rasengan = Color.Violet;
+            point4.rasengan = Color.Pink;
+            point5.rasengan = Color.Yellow;
         }
 
         private void picDisplay_MouseWheel(object sender, MouseEventArgs e)
@@ -176,17 +173,20 @@ namespace Курсачица
 
         private void picDisplay_MouseClick(object sender, MouseEventArgs e)
         {
-            point1.rasengan = button1.BackColor;
-            var gX = point1.X - e.X;
-            var gY = point1.Y - e.Y;
-            double r = Math.Sqrt(gX * gX + gY * gY);
-            if (r < point1.Power / 2 )
+            foreach (var p in emitter.impactPoints)
             {
-                point1.rasengan = button1.BackColor;
-            }
-            else
-            {
-                point1.rasengan = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
+                if (p is GravityPoint)
+                {
+                    var a = p as GravityPoint;
+                    var x = a.X - e.X;
+                    var y = a.Y - e.Y;
+                    double r = Math.Sqrt(x * x + y * y);
+                    if (r <= a.Power / 2)
+                    {
+                      (p as GravityPoint).rasengan = button1.BackColor;
+                        break;
+                    }
+                }
             }
         }
 

@@ -144,11 +144,11 @@
             // CngColor
             // 
             this.CngColor.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.CngColor.Location = new System.Drawing.Point(1289, 13);
+            this.CngColor.Location = new System.Drawing.Point(1288, 59);
             this.CngColor.Name = "CngColor";
             this.CngColor.Size = new System.Drawing.Size(133, 25);
             this.CngColor.TabIndex = 18;
-            this.CngColor.Text = "Случайные цвета";
+            this.CngColor.Text = "Цвета по умолчанию";
             this.CngColor.UseVisualStyleBackColor = false;
             this.CngColor.Click += new System.EventHandler(this.CngColor_Click);
             // 
@@ -183,7 +183,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.button1.Location = new System.Drawing.Point(1292, 57);
+            this.button1.Location = new System.Drawing.Point(1291, 13);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 25);
             this.button1.TabIndex = 23;

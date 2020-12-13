@@ -18,7 +18,8 @@ namespace Курсачица
         public int RadiusMin = 2; 
         public int RadiusMax = 10;
         public int LifeMin = 20; 
-        public int LifeMax = 100; 
+        public int LifeMax = 100;
+        public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
 
         public int ParticlesPerTick = 1;
 
@@ -59,14 +60,13 @@ namespace Курсачица
             return particle;
         }
 
-        public List<IImpactPoint> impactPoints = new List<IImpactPoint>(); // тут буду хранится точки для перекрашивания частиц
-
         public void UpdateState()
         {
             int particlesToCreate = ParticlesPerTick;
 
             foreach (var particle in particles)
             {
+
                 if (particle.Life < 0)
                 {
                     if (particlesToCreate > 0)
