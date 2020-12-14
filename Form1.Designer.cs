@@ -54,6 +54,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.label9 = new System.Windows.Forms.Label();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbCount)).BeginInit();
@@ -303,12 +304,24 @@
             this.label9.TabIndex = 34;
             this.label9.Text = "Максимальный радиус частицы";
             // 
+            // checkBox2
+            // 
+            this.checkBox2.Font = new System.Drawing.Font("Poor Richard", 14F, System.Drawing.FontStyle.Italic);
+            this.checkBox2.Location = new System.Drawing.Point(1255, 274);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(75, 40);
+            this.checkBox2.TabIndex = 37;
+            this.checkBox2.Text = "Штука";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(1450, 642);
+            this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.trackBar2);
             this.Controls.Add(this.label9);
@@ -375,6 +388,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TrackBar trackBar2;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }
 

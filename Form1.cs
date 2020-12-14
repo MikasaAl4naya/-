@@ -17,11 +17,11 @@ namespace Курсачица
         List<Emitter> emitters = new List<Emitter>();
         bool work = true;
 
-        GravityPoint point1;
-        GravityPoint point2;
-        GravityPoint point3;
-        GravityPoint point4;
-        GravityPoint point5;
+        ColorPoint point1;
+        ColorPoint point2;
+        ColorPoint point3;
+        ColorPoint point4;
+        ColorPoint point5;
         public Form1()
         {
             InitializeComponent();
@@ -42,27 +42,27 @@ namespace Курсачица
 
             emitters.Add(this.emitter);
 
-            point1 = new GravityPoint(Color.Red)
+            point1 = new ColorPoint(Color.Red)
             {
                 X = picDisplay.Width / 2,
                 Y = picDisplay.Height / 2,
             };
-            point2 = new GravityPoint(Color.LightBlue)
+            point2 = new ColorPoint(Color.LightBlue)
             {
                 X = picDisplay.Width / 2 - 250,
                 Y = picDisplay.Height / 2,
             };
-            point3 = new GravityPoint(Color.Violet)
+            point3 = new ColorPoint(Color.Violet)
             {
                 X = picDisplay.Width / 2 + 250,
                 Y = picDisplay.Height / 2,
             };
-            point4 = new GravityPoint(Color.Pink)
+            point4 = new ColorPoint(Color.Pink)
             {
                 X = picDisplay.Width / 2 - 500,
                 Y = picDisplay.Height / 2,
             };
-            point5 = new GravityPoint(Color.Yellow)
+            point5 = new ColorPoint(Color.Yellow)
             {
                 X = picDisplay.Width / 2 + 500,
                 Y = picDisplay.Height / 2,
@@ -101,9 +101,9 @@ namespace Курсачица
         {
             foreach (var p in emitter.impactPoints)
             {
-                if (p is GravityPoint)
+                if (p is ColorPoint)
                 {
-                    (p as GravityPoint).Y = lbY.Value;
+                    (p as ColorPoint).Y = lbY.Value;
                 }
             }
         }
@@ -123,16 +123,16 @@ namespace Курсачица
             {
                 if (e.Delta > 0)
                 {
-                    if ((p as GravityPoint).Power < 359)
+                    if ((p as ColorPoint).Power < 359)
                     {
-                        (p as GravityPoint).Power += 10;
+                        (p as ColorPoint).Power += 10;
                     }
                 }
                 else if (e.Delta < 0)
                 {
-                    if ((p as GravityPoint).Power > 10)
+                    if ((p as ColorPoint).Power > 10)
                     {
-                        (p as GravityPoint).Power -= 10;
+                        (p as ColorPoint).Power -= 10;
                     }
                 }
             }
@@ -148,7 +148,7 @@ namespace Курсачица
         {
             label5.Text = Convert.ToString(lbCount.Value);
             foreach (var p in emitter.impactPoints)
-                lbY.Value = (int)(p as GravityPoint).Y;
+                lbY.Value = (int)(p as ColorPoint).Y;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -164,15 +164,15 @@ namespace Курсачица
         {
             foreach (var p in emitter.impactPoints)
             {
-                if (p is GravityPoint)
+                if (p is ColorPoint)
                 {
-                    var a = p as GravityPoint;
+                    var a = p as ColorPoint;
                     var x = a.X - e.X;
                     var y = a.Y - e.Y;
                     double r = Math.Sqrt(x * x + y * y);
                     if (r <= a.Power / 2)
                     {
-                      (p as GravityPoint).rasengan = button1.BackColor;
+                      (p as ColorPoint).rasengan = button1.BackColor;
                         break;
                     }
                 }
@@ -228,5 +228,59 @@ namespace Курсачица
                 label3.Text = $"{GravitaionBar.Value}";
             }
         }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked)
+            {               
+                emitter = new TopEmitter
+                {
+                    Direction = 0,
+                    Spreading = 10,
+                    SpeedMin = 10,
+                    SpeedMax = 10,
+                    ColorFrom = Color.White,
+                    ParticlesPerTick = 20,
+                    X = picDisplay.Width / 2,
+                    Width = picDisplay.Width,
+                    Y = picDisplay.Height / 2,
+                    Height = picDisplay.Height-1,
+                };
+
+                emitters.Add(this.emitter);
+                emitter.GravitationY = -1;
+                emitter.impactPoints.Add(point1);
+                emitter.impactPoints.Add(point2);
+                emitter.impactPoints.Add(point3);
+                emitter.impactPoints.Add(point4);
+                emitter.impactPoints.Add(point5);
+            }
+            else
+            {
+               
+                emitter = new TopEmitter
+                {
+                    Direction = 0,
+                    Spreading = 10,
+                    SpeedMin = 10,
+                    SpeedMax = 10,
+                    ColorFrom = Color.White,
+                    ParticlesPerTick = 20,
+                    X = picDisplay.Width / 2,
+                    Width = picDisplay.Width,
+                    Y = picDisplay.Height / 2,
+                };
+
+                emitters.Add(this.emitter);
+                emitter.GravitationY = -1;
+                emitter.impactPoints.Add(point1);
+                emitter.impactPoints.Add(point2);
+                emitter.impactPoints.Add(point3);
+                emitter.impactPoints.Add(point4);
+                emitter.impactPoints.Add(point5);
+                emitter.GravitationY = GravitaionBar.Value;
+                label3.Text = $"{GravitaionBar.Value}";
+            }
+            }
     }
 }

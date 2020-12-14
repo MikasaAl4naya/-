@@ -25,13 +25,13 @@ namespace Курсачица
         }
     }
 
-    public class GravityPoint : IImpactPoint
+    public class ColorPoint : IImpactPoint
     {
         public HashSet<Particle> numberOfParticles = new HashSet<Particle>(); 
         public int Power = 200;
         public Color rasengan = Color.Red;
 
-        public GravityPoint(Color rasengan)
+        public ColorPoint(Color rasengan)
         {
             this.rasengan = rasengan;
         }

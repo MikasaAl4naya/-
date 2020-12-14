@@ -10,14 +10,14 @@ namespace Курсачица
     public class Emitter
     {
         public int X;
-        public int Y; 
-        public int Direction = 0; 
+        public int Y;
+        public int Direction = 0;
         public int Spreading = 360;
         public int SpeedMin = 1;
-        public int SpeedMax = 10; 
-        public int RadiusMin = 2; 
+        public int SpeedMax = 10;
+        public int RadiusMin = 2;
         public int RadiusMax = 10;
-        public int LifeMin = 20; 
+        public int LifeMin = 20;
         public int LifeMax = 100;
         public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
 
@@ -66,7 +66,7 @@ namespace Курсачица
 
             foreach (var particle in particles)
             {
-                if(particle.Life > 0)
+                if (particle.Life > 0)
                 {
                     particle.Life -= 1;
                 }
@@ -113,9 +113,9 @@ namespace Курсачица
                 }
             }
         }
-    
 
-    public void Render(Graphics g)
+
+        public void Render(Graphics g)
         {
             foreach (var particle in particles)
             {
@@ -131,16 +131,21 @@ namespace Курсачица
     public class TopEmitter : Emitter
     {
         public int Width; // длина экрана
+        public int Height;
 
         public override void ResetParticle(Particle particle)
         {
             base.ResetParticle(particle); // вызываем базовый сброс частицы
 
             particle.X = Particle.rand.Next(Width); // позиция X 
-            particle.Y = 0;  // верх экрана 
+            particle.Y = Height;  // верх экрана 
 
             particle.SpeedY = 1; // скорость падения вниз
             particle.SpeedX = Particle.rand.Next(-2, 2); // разброс
         }
+    
     }
 }
+
+
+
