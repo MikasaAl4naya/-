@@ -95,18 +95,7 @@ namespace Курсачица
 
             picDisplay.Invalidate();
         }
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton2.Checked)
-            {
-                emitter.GravitationY = 0;
-            }
 
-            if (radioButton1.Checked)
-            {
-                emitter.GravitationY = 1;
-            }
-        }
 
         private void lbY_Scroll(object sender, EventArgs e)
         {
@@ -203,6 +192,41 @@ namespace Курсачица
         private void button4_Click(object sender, EventArgs e)
         {
             emitter.UpdateState();
+        }
+
+        private void GravitationBar_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            emitter.RadiusMin = trackBar1.Value;
+            label6.Text = $"{trackBar1.Value}";
+        }
+
+        private void trackBar2_Scroll(object sender, EventArgs e)
+        {
+            emitter.RadiusMax = trackBar2.Value;
+            label8.Text = $"{trackBar2.Value}";
+        }
+
+        private void GravitaionBar_Scroll(object sender, EventArgs e)
+        {                                
+                emitter.GravitationY = GravitaionBar.Value;
+                label3.Text = $"{GravitaionBar.Value}";         
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                emitter.GravitationY = 0;
+            }
+            else {
+                emitter.GravitationY = GravitaionBar.Value;
+                label3.Text = $"{GravitaionBar.Value}";
+            }
         }
     }
 }
