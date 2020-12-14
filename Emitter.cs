@@ -66,6 +66,10 @@ namespace Курсачица
 
             foreach (var particle in particles)
             {
+                if(particle.Life > 0)
+                {
+                    particle.Life -= 1;
+                }
 
                 if (particle.Life < 0)
                 {

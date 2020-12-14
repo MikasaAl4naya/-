@@ -12,11 +12,11 @@ namespace Курсачица
         public float Life; 
 
         public int Radius; // радиус частицы
-        public float X; //положение частицы в пространстве 
+        public float X; 
         public float Y;
 
-        public float SpeedX; // скорость по оси X
-        public float SpeedY; // скорость по оси Y
+        public float SpeedX;
+        public float SpeedY;
 
         public static Random rand = new Random();
 
